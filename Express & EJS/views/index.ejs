@@ -1,0 +1,15 @@
+<%- include("partials/header") %>
+
+<div class="container">
+  <h1><%= name %></h1>
+  <h3><%= description %></h3>
+  <p>Total number of subscribers: <%= subscribers %></p>
+  <ul>
+    <% for(let post of posts) { %> <% if(post.img) { %>
+    <img src="<%= post.img %>" alt="" />
+    <% } %>
+    <li><%= post.title %> - <b><%= post.author %></b></li>
+    <% } %>
+  </ul>
+</div>
+<%- include("partials/footer") %>
