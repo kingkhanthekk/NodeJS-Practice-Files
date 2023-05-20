@@ -11,6 +11,8 @@
     <h3>Comment Id: <%= comment.id %></h3>
     <p><%= comment.comment %> - <b><%= comment.username %></b></p>
     <br />
+    <a href="/comments/<%= comment.id %>/edit">Update comment</a>
+    <br />
     <a href="/comments">Back to index</a>
   </body>
 </html>

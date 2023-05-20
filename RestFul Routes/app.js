@@ -2,12 +2,14 @@ const { urlencoded } = require("body-parser");
 const express = require("express");
 const path = require("path");
 const { v4: uid } = require("uuid");
+var methodOverride = require("method-override");
 
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 let comments = [
   {
@@ -49,6 +51,20 @@ app.get("/comments/:id", (req, res) => {
   const { id } = req.params;
   let comment = comments.find((c) => c.id === id);
   res.render("comments/details", { comment });
+});
+
+app.get("/comments/:id/edit", (req, res) => {
+  const { id } = req.params;
+  let comment = comments.find((c) => c.id === id);
+  res.render("comments/update", { comment });
+});
+
+app.patch("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  let newComment = req.body.comment;
+  let comment = comments.find((c) => c.id === id);
+  comment.comment = newComment;
+  res.redirect("/comments");
 });
 
 app.post("/comments", (req, res) => {
