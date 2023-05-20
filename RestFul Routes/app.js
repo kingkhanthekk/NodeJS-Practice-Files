@@ -1,6 +1,7 @@
 const { urlencoded } = require("body-parser");
 const express = require("express");
 const path = require("path");
+const { v4: uid } = require("uuid");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -10,27 +11,27 @@ app.use(express.json());
 
 let comments = [
   {
-    id: 1,
+    id: uid(),
     username: "monty",
     comment: "aha aha aha good.",
   },
   {
-    id: 2,
+    id: uid(),
     username: "aury",
     comment: "i have seen it.",
   },
   {
-    id: 3,
+    id: uid(),
     username: "notty",
     comment: "can you do it again.",
   },
   {
-    id: 4,
+    id: uid(),
     username: "jhinku",
     comment: "not all that good.",
   },
   {
-    id: 5,
+    id: uid(),
     username: "shukku",
     comment: "tere bin ghorib.",
   },
@@ -46,13 +47,14 @@ app.get("/comments/new", (req, res) => {
 
 app.get("/comments/:id", (req, res) => {
   const { id } = req.params;
-  let comment = comments.find((c) => c.id === parseInt(id));
+  let comment = comments.find((c) => c.id === id);
   res.render("comments/details", { comment });
 });
 
 app.post("/comments", (req, res) => {
   const { username, comment } = req.body;
   let newComment = {
+    id: uid(),
     username: username,
     comment: comment,
   };
