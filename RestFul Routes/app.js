@@ -78,6 +78,12 @@ app.post("/comments", (req, res) => {
   res.redirect("/comments");
 });
 
+app.delete("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  comments = comments.filter((c) => c.id !== id);
+  res.redirect("/comments");
+});
+
 app.listen(3000, () => {
   console.log("Server running on port 3000.");
 });
