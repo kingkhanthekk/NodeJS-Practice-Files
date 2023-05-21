@@ -26,4 +26,31 @@ const inception = new Movie({
   score: 8.7,
   rating: "Good",
 });
-inception.save();
+// inception.save();  //Inserts a single document
+
+// Movie.insertMany([
+//   { title: "Django Unchained", year: 2012, score: 8.9, rating: "Good" },
+//   { title: "OldBoy", year: 2001, score: 7.4, rating: "Not good" },
+//   { title: "Man of Steel", year: 2012, score: 8.9, rating: "Good" },
+//   { title: "Avengers", year: 2010, score: 8.6, rating: "Good" },
+// ]).then((data) => {
+//   console.log("Inserted: ", data);
+// });
+
+//Inserts many documents at a time
+
+// Movie.find({}).then((data) => {
+//   console.log(data);
+// });
+
+//Shows all data in a collection
+
+// Movie.find({ year: { $gte: 2010 } }).then((data) => {
+//   console.log(data);
+// });
+
+//Selected data in a collection
+
+// Movie.findById("646a3ba632d33b25e4be5382").then((data) => console.log(data));
+
+//Finds a document by its id.
