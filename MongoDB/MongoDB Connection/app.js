@@ -54,3 +54,36 @@ const inception = new Movie({
 // Movie.findById("646a3ba632d33b25e4be5382").then((data) => console.log(data));
 
 //Finds a document by its id.
+
+// Movie.updateOne({ title: "OldBoy" }, { year: 2003 }).then((m) =>
+//   console.log(m)
+// );
+
+// Updates one document
+
+// Movie.updateMany(
+//   { title: { $in: ["Man of Steel", "Avengers"] } },
+//   { rating: "very good" }
+// ).then((m) => console.log(m));
+
+//Updates many documents
+
+// Movie.findOneAndUpdate(
+//   { title: "Inception" },
+//   { rating: "very good", score: 9.1 },
+//   { new: true }
+// ).then((m) => console.log(m));
+
+//Finds one document and upsates it
+
+// Movie.deleteOne({ title: "OldBoy" }).then((m) => console.log(m));
+
+// Deletes one document
+
+// Movie.deleteMany({ year: { $gte: 2010 } }).then((m) => console.log(m));
+
+// Deletes many document
+
+// Movie.findOneAndDelete({ title: "Avengers" }).then((m) => console.log(m));
+
+// Finds one and deletes it
