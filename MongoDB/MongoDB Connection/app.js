@@ -25,11 +25,12 @@ const movieSchema = new mongoose.Schema({
   score: {
     type: Number,
     default: 1,
-    min: 0,
+    min: [0, "Should be positive value"],
   },
   rating: {
     type: String,
     maxlength: 20,
+    enum: ["good", "very good", "bad", "very bad"],
   },
   comments: [String],
 });
