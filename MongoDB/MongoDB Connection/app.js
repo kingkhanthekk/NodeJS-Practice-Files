@@ -35,6 +35,11 @@ const movieSchema = new mongoose.Schema({
   comments: [String],
 });
 
+movieSchema.methods.addComment = function (comment) {
+  this.comments.push(comment);
+  return this.save();
+};
+
 const Movie = mongoose.model("Movie", movieSchema);
 const inception = new Movie({
   title: "Inception",
