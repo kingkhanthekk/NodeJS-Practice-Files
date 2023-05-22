@@ -40,6 +40,10 @@ movieSchema.methods.addComment = function (comment) {
   return this.save();
 };
 
+movieSchema.statics.findByName = function (name) {
+  return this.findOne({ title: name });
+};
+
 const Movie = mongoose.model("Movie", movieSchema);
 const inception = new Movie({
   title: "Inception",
