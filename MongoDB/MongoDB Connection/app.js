@@ -13,10 +13,25 @@ mongoose
   });
 
 const movieSchema = new mongoose.Schema({
-  title: String,
-  year: Number,
-  score: Number,
-  rating: String,
+  title: {
+    type: String,
+    required: true,
+    maxlength: 20,
+  },
+  year: {
+    type: Number,
+    required: true,
+  },
+  score: {
+    type: Number,
+    default: 1,
+    min: 0,
+  },
+  rating: {
+    type: String,
+    maxlength: 20,
+  },
+  comments: [String],
 });
 
 const Movie = mongoose.model("Movie", movieSchema);
