@@ -86,7 +86,7 @@ const inception = new Movie({
 // Movie.findOneAndUpdate(
 //   { title: "Inception" },
 //   { rating: "very good", score: 9.1 },
-//   { new: true }
+//   { new: true, runValidators: true }
 // ).then((m) => console.log(m));
 
 //Finds one document and upsates it
