@@ -44,6 +44,10 @@ movieSchema.statics.findByName = function (name) {
   return this.findOne({ title: name });
 };
 
+movieSchema.virtual("titleAndYear").get(function () {
+  return `Title: ${this.title} and Year: ${this.year}`;
+});
+
 const Movie = mongoose.model("Movie", movieSchema);
 const inception = new Movie({
   title: "Inception",
