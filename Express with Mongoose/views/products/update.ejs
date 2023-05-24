@@ -38,10 +38,13 @@
       />
       <label for="ctgr">Category: </label>
       <select name="category" id="ctgr">
-        <option value="fruit">fruit</option>
+        <!-- <option value="fruit">fruit</option>
         <option value="vegetable">vegetable</option>
         <option value="mineral">mineral</option>
-        <option value="food">food</option>
+        <option value="food">food</option> -->
+        <% for(let category of categories) { %>
+        <option value="<%= category %>" <%= product.category === category ? "selected" : "" %>><%= category %></option>
+        <% } %>
       </select>
       <button>Submit</button>
     </form>

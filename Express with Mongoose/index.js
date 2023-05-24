@@ -24,6 +24,8 @@ mongoose
     console.log("Connection error ", e);
   });
 
+let categories = ["fruit", "vegetable", "mineral", "food"];
+
 app.get("/", (req, res) => {
   res.redirect("/products");
 });
@@ -40,13 +42,13 @@ app.get("/products/:id/details", async (req, res) => {
 });
 
 app.get("/products/new", (req, res) => {
-  res.render("products/new");
+  res.render("products/new", { categories });
 });
 
 app.get("/products/:id/edit", async (req, res) => {
   const { id } = req.params;
   let product = await Product.findById(id);
-  res.render("products/update", { product });
+  res.render("products/update", { product, categories });
 });
 
 app.post("/products", async (req, res) => {
