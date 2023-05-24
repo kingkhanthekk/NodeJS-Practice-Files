@@ -11,7 +11,7 @@
     <ul>
       <% for(let product of products) { %>
       <li>
-        <a href="/products/details/<%= product._id %>"><%= product.title %></a>
+        <a href="/products/<%= product._id %>/details"><%= product.title %></a>
       </li>
       <% } %>
     </ul>
