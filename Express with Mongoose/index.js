@@ -57,13 +57,19 @@ app.post("/products", async (req, res) => {
   res.redirect("/products");
 });
 
-app.put("/products/:id/update", async (req, res) => {
+app.put("/products/:id", async (req, res) => {
   const { id } = req.params;
   await Product.findByIdAndUpdate(id, req.body, {
     runValidators: true,
     new: true,
   });
   res.redirect(`/products/${id}/details`);
+});
+
+app.delete("/products/:id", async (req, res) => {
+  const { id } = req.params;
+  await Product.findByIdAndDelete(id);
+  res.redirect("/");
 });
 
 app.listen(3000, () => {
