@@ -12,6 +12,11 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: "thisisasecret" }));
 
+const requireLogin = (req, res, next) => {
+  if (!req.session.userId) return res.redirect("/login");
+  next();
+};
+
 mongoose
   .connect("mongodb://127.0.0.1:27017/authDB", {
     useNewUrlParser: true,
@@ -36,9 +41,9 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/secret", (req, res) => {
-  if (!req.session.userId) return res.redirect("/login");
-  res.send("Isko ki kisko ki chutki.");
+app.get("/secret", requireLogin, (req, res) => {
+  // if (!req.session.userId) return res.redirect("/login");
+  res.render("secret");
 });
 
 app.post("/register", async (req, res) => {
@@ -61,6 +66,12 @@ app.post("/login", async (req, res) => {
     req.session.userId = user._id;
     res.redirect("/secret");
   } else res.redirect("/login");
+});
+
+app.post("/signout", (req, res) => {
+  // req.session.userId = null;
+  req.session.destroy();
+  res.redirect("/login");
 });
 
 app.listen(3000, () => {
