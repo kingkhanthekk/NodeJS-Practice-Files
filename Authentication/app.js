@@ -48,11 +48,7 @@ app.get("/secret", requireLogin, (req, res) => {
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
-  const hash = await bcrypt.hash(password, 12);
-  const user = new User({
-    username,
-    password: hash,
-  });
+  const user = new User({ username, password });
   await user.save();
   req.session.userId = user._id;
   res.redirect("/secret");
@@ -60,10 +56,9 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  const pass = await bcrypt.compare(password, user.password);
-  if (pass) {
-    req.session.userId = user._id;
+  const auth = await User.authenticate(username, password);
+  if (auth) {
+    req.session.userId = auth._id;
     res.redirect("/secret");
   } else res.redirect("/login");
 });
