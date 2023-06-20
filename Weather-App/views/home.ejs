@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/img/weather-icon.png" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Weather</h1>
+      <%- include("partials/header") %>
+      <p>
+        This is a current weather showing app. Enter the city name to know the
+        weather
+      </p>
+      <form action="/" method="post">
+        <input type="text" name="location" placeholder="City" />
+        <button>Search</button>
+      </form>
+      <div class="weather">
+        <% if(data) { %>
+        <p>
+          Current condition in <%= data.location %> is <%= data.condition %>.
+        </p>
+        <p>
+          The temperature is <%= data.temperature %> &deg;C. Feels like <%=
+          data.feels_like %> &deg;C
+        </p>
+        <% } else if(data && data.err) { %>
+        <p><%= data.err %></p>
+        <% } %>
+      </div>
+    </div>
+    <%- include("partials/footer") %>
+  </body>
+</html>
